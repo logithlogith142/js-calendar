@@ -1,0 +1,131 @@
+let index,month,i,inc=0
+let mth=["JANUARY","FEBRAURY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"]
+
+//main func
+function load()
+{
+
+    let days = document.querySelector(".days");
+    days.innerHTML = "";
+
+//get month
+let month=d.getMonth();
+
+console.log(month);
+
+//getmonth
+m1=document.querySelector(".month");
+m1.innerHTML=mth[month];
+// date
+
+let year= d.getFullYear();
+console.log(year)
+let m2=document.querySelector("span");
+m2.innerHTML=year
+// display
+//gettotal days
+
+let d1= new Date(year,month+1,0).getDate();
+console.log(d1)
+//pre last day
+let f1= new Date(year,month,0).getDay()
+console.log(f1)
+
+//print premonth lastdates
+for(let i =f1; i>=0;i--)
+{ 
+    let c=document.querySelector(".days");
+    //create div
+    let c1 =document.createElement("div");
+    let c2=document.innerHTML=" ";
+    c.append(c1)
+    c1.append(c2)
+    
+    
+}
+
+//printcurrentmonthdates
+ 
+
+for( i=1;i<=d1; i++ )
+{  
+    let c=document.querySelector(".days");
+     let c1 =document.createElement("div");
+    if(date==i && inc==0)
+    {
+        let c2=document.innerHTML=i;
+        c.append(c1)
+        c1.append(c2)
+        console.log(i);
+        c1.id="current";
+   
+    }     
+    
+    else{
+        let c2=document.innerHTML=i;
+        c.append(c1)
+        c1.append(c2)
+        
+        c1.addEventListener("click",function()
+        {
+            //getevent
+            let prom= prompt("please enter the event")
+            let  stat=document.createElement("h6")
+             localStorage.setItem("details",prom)
+           localStorage.getItem("details",prom)
+            stat.innerText=prom
+            
+            stat.id="child"
+            c1.appendChild(stat)
+           
+          
+           
+            console.log(stat)
+            c2.id="current1"
+        }
+         
+        
+     )      
+    }
+}
+
+}
+
+//next button
+let b1= document.querySelector(".next")
+b1.addEventListener("click",()=>{
+    if(month==11)
+    {
+        month=0;
+        
+       // let s=d.setMonth(d.getMonth(index+1))
+      //  alert(s)
+    }
+    else{ 
+        d.setMonth(d.getMonth()+1)
+        console.log(month)
+        inc++
+        
+        }
+    load()
+}
+);
+//pre button
+let b2=document.querySelector(".pre");
+
+b2.addEventListener("click",()=>{
+    if(month==0)
+    {
+        month=11;
+    }
+    else{
+        d.setMonth(d.getMonth()-1)
+        console.log(month)
+        inc--
+    }
+    load()       
+});
+let d= new Date;
+let date= d.getDate();
+console.log(date);
+load()
